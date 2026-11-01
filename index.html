@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ARKVVAA Brochure</title>
+<meta name="description" content="ARKVVAA: renewable energy technology and engineering solutions partner. Digital engineering, AI, energy cybersecurity and GridKavach AI.">
+<meta property="og:title" content="ARKVVAA Brochure">
+<meta property="og:description" content="Renewable energy technology and engineering solutions partner.">
+<meta property="og:image" content="pages/page-1.jpg">
+<link rel="icon" href="favicon.png">
+<style>
+@font-face { font-family: 'Spartan'; src: url('fonts/spartan-Bold.otf'); font-weight: 700; font-display: swap; }
+@font-face { font-family: 'DIN'; src: url('fonts/D-DIN.woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'DIN'; src: url('fonts/D-DIN-Bold.woff2'); font-weight: 700; font-display: swap; }
+:root {
+  --night: #06121f; --ink: #0b1b2b; --text: #2a3b4d; --muted: #5d6e80; --line: #dfe6ed;
+  --bg: #f4f7fa; --brand: #2f5f7e; --teal: #14b8a6; --mint: #5eead4; --danger: #c62828;
+}
+* { box-sizing: border-box; margin: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DIN', system-ui, sans-serif; background: var(--night); color: var(--text); min-height: 100vh; }
+body.locked { overflow: hidden; }
+
+/* Top bar */
+.bar { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 12px 16px; background: rgba(255, 255, 255, 0.96); border-bottom: 1px solid var(--line); }
+.bar img { height: 28px; width: auto; display: block; }
+.btn { font: 700 15px/1 'DIN', sans-serif; border: 0; border-radius: 999px; cursor: pointer; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; background: var(--brand); color: #fff; }
+.btn:hover { background: #244c66; }
+.btn:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid rgba(20, 184, 166, 0.5); outline-offset: 2px; }
+.btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.bar .btn { padding: 10px 16px; font-size: 14px; }
+.bar .btn[hidden] { display: none; }
+
+/* Brochure pages */
+.pages { max-width: 860px; margin: 0 auto; padding: 24px 16px 48px; display: grid; gap: 20px; transition: filter 0.8s ease; }
+.pages img { width: 100%; height: auto; display: block; border-radius: 6px; box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45); background: #fff; aspect-ratio: 1240 / 1754; }
+body.locked .pages { filter: blur(14px) brightness(0.8); pointer-events: none; user-select: none; }
+.end { text-align: center; color: #a9bccf; padding: 0 16px 48px; font-size: 15px; }
+.end a { color: var(--mint); }
+
+/* Setup notice, shown only while the Google Form is not connected */
+.setup { background: #fff4e0; color: #7a4a00; font-size: 13px; padding: 8px 16px; text-align: center; }
+
+/* Lead form */
+.overlay { position: fixed; inset: 0; z-index: 10; display: grid; place-items: center; padding: 16px; overflow-y: auto;
+  background: rgba(6, 18, 31, 0.35); opacity: 0; visibility: hidden; transition: opacity 0.5s ease, visibility 0.5s; }
+body.locked .overlay { opacity: 1; visibility: visible; }
+.card { width: 100%; max-width: 460px; background: #fff; border-radius: 18px; padding: 28px 24px 24px; margin: auto;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5); transform: translateY(24px); transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
+body.locked .card { transform: none; }
+.card .logo { height: 26px; width: auto; display: block; }
+.card h1 { font-family: 'Spartan', sans-serif; font-weight: 700; color: var(--ink); font-size: 23px; line-height: 1.2; margin: 18px 0 6px; }
+.card .lead { font-size: 15px; line-height: 1.45; color: var(--muted); margin-bottom: 18px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.field { display: grid; gap: 5px; }
+.field.full { grid-column: 1 / -1; }
+.field[hidden] { display: none; }
+label { font-size: 13px; font-weight: 700; color: var(--ink); }
+label .opt { font-weight: 400; color: var(--muted); }
+input, select { font: 16px 'DIN', system-ui, sans-serif; width: 100%; padding: 11px 12px; border: 1px solid #c9d4de; border-radius: 10px; color: var(--ink); background: #fff; }
+input:invalid.touched { border-color: var(--danger); }
+.consent { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; font-size: 13px; line-height: 1.4; color: var(--muted); margin-top: 4px; }
+.consent input { width: 18px; height: 18px; margin-top: 1px; flex: none; accent-color: var(--brand); }
+.card .btn { width: 100%; justify-content: center; margin-top: 16px; padding: 14px 20px; font-size: 16px; }
+.card .btn[disabled] { opacity: 0.7; cursor: wait; }
+.error { color: var(--danger); font-size: 14px; margin-top: 10px; min-height: 1em; }
+.small { font-size: 12px; color: var(--muted); margin-top: 12px; text-align: center; }
+
+@media (max-width: 480px) {
+  .grid { grid-template-columns: 1fr; }
+  .card { padding: 22px 18px 18px; }
+  .card h1 { font-size: 21px; }
+  .bar .label { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .pages, .overlay, .card { transition: none; } }
+</style>
+<script src="config.js"></script>
+</head>
+<body>
+<div class="setup" id="setup" hidden>Setup: the Google Form is not connected yet, so answers are not being saved. See README.md.</div>
+<header class="bar">
+  <img src="logo-dark.png" alt="ARKVVAA">
+  <a class="btn" id="download" href="ARKVVAA-Brochure.pdf" download hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span class="label">Download PDF</span>
+  </a>
+</header>
+
+<main class="pages" id="pages">
+  <img src="pages/page-1.jpg" alt="Brochure page 1: Renewable Energy Technology and Engineering Solutions Partner">
+  <img src="pages/page-2.jpg" alt="Brochure page 2: who we are and our five solution areas" loading="lazy">
+  <img src="pages/page-3.jpg" alt="Brochure page 3: GridKavach AI, CEA cybersecurity compliance and assessment platform" loading="lazy">
+  <img src="pages/page-4.jpg" alt="Brochure page 4: how we deliver, engagement models and contact details" loading="lazy">
+</main>
+<p class="end" id="end">Questions? Email <a href="mailto:solutions@arkvvaa.com">solutions@arkvvaa.com</a> or visit <a href="https://arkvvaa.com">arkvvaa.com</a></p>
+
+<div class="overlay" id="overlay">
+  <form class="card" id="form" role="dialog" aria-modal="true" aria-labelledby="form-title" novalidate>
+    <img class="logo" src="logo-dark.png" alt="ARKVVAA">
+    <h1 id="form-title">View the full brochure</h1>
+    <p class="lead">Share a few details to read and download the ARKVVAA brochure. Our team may follow up about your interest.</p>
+    <div class="grid">
+      <div class="field full"><label for="name">Full name</label><input id="name" name="name" autocomplete="name" required></div>
+      <div class="field full"><label for="email">Work email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+      <div class="field" hidden><label for="company">Company</label><input id="company" name="company" autocomplete="organization" required disabled></div>
+      <div class="field" hidden><label for="role">Job title <span class="opt">(optional)</span></label><input id="role" name="role" autocomplete="organization-title" disabled></div>
+      <div class="field"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" pattern="[0-9+()\s-]{7,}" required></div>
+      <div class="field"><label for="interest">Area of interest</label>
+        <select id="interest" name="interest" required>
+          <option value="">Choose one</option>
+          <option>GridKavach AI demo</option>
+          <option>Cybersecurity assessment or compliance</option>
+          <option>Digital engineering and automation</option>
+          <option>Digital twin, HIL or simulation</option>
+          <option>AI or data solution</option>
+          <option>Engineering talent or staffing</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+    <label class="consent"><input type="checkbox" id="consent" required> I agree that ARKVVAA may contact me about this enquiry.</label>
+    <button class="btn" type="submit" id="submit">Show the brochure</button>
+    <p class="error" id="error" role="alert"></p>
+    <p class="small">We use these details only to respond to you.</p>
+  </form>
+</div>
+
+<script>
+(function () {
+  var KEY = 'arkvvaa-brochure-unlocked'
+  var $ = function (id) { return document.getElementById(id) }
+
+  // The Google Form settings from config.js. Company and Job title are shown only when the
+  // Google Form has those questions, so every answer on the page has somewhere to go.
+  var cfg = window.LEAD_FORM || {}
+  var fields = {}
+  Object.keys(cfg.fields || {}).forEach(function (k) { if (cfg.fields[k]) fields[k] = cfg.fields[k] })
+  var gform = cfg.formId && fields.name && fields.email
+    ? { action: 'https://docs.google.com/forms/d/e/' + cfg.formId + '/formResponse', fields: fields }
+    : null
+  if (!gform) $('setup').hidden = false
+  ;['company', 'role'].forEach(function (k) {
+    if (!fields[k]) return
+    $(k).disabled = false
+    $(k).parentNode.hidden = false
+  })
+
+  function remembered() { try { return localStorage.getItem(KEY) === '1' } catch (e) { return false } }
+  function remember() { try { localStorage.setItem(KEY, '1') } catch (e) {} }
+
+  function lock() {
+    document.body.classList.add('locked')
+    $('pages').setAttribute('aria-hidden', 'true')
+    $('end').setAttribute('aria-hidden', 'true')
+    setTimeout(function () { $('name').focus({ preventScroll: true }) }, 500)
+  }
+  function unlock() {
+    document.body.classList.remove('locked')
+    $('pages').removeAttribute('aria-hidden')
+    $('end').removeAttribute('aria-hidden')
+    $('download').hidden = false
+    $('overlay').setAttribute('aria-hidden', 'true')
+  }
+
+  // Returning visitors on the same phone go straight to the brochure.
+  if (remembered()) unlock()
+  else setTimeout(lock, 1200) // show the cover clearly for a moment, then blur it and ask
+
+  var form = $('form')
+  form.addEventListener('input', function (e) { e.target.classList.add('touched') })
+  form.addEventListener('submit', function (e) {
+    e.preventDefault()
+    Array.prototype.forEach.call(form.elements, function (el) { el.classList.add('touched') })
+    if (!form.checkValidity()) {
+      $('error').textContent = 'Please fill in every field with a valid email and phone number, and tick the box.'
+      var bad = form.querySelector(':invalid')
+      if (bad) bad.focus()
+      return
+    }
+    $('error').textContent = ''
+    if (!gform) { remember(); unlock(); return }
+
+    var body = new URLSearchParams()
+    Object.keys(gform.fields).forEach(function (k) {
+      var el = $(k)
+      var value = el && el.value.trim()
+      if (!value) return
+      // "Other" is the Google Form's write-in choice, which Google expects in this form.
+      if (k === 'interest' && value === 'Other') {
+        body.append(gform.fields[k], '__other_option__')
+        body.append(gform.fields[k] + '.other_option_response', 'Other')
+      } else body.append(gform.fields[k], value)
+    })
+    $('submit').disabled = true
+    $('submit').textContent = 'Sending...'
+    // Google Forms does not allow reading the reply from another site, so the request is sent
+    // "no-cors": it is delivered, but the page cannot see the response. A network failure still throws.
+    fetch(gform.action, { method: 'POST', mode: 'no-cors', body: body })
+      .then(function () { remember(); unlock() })
+      .catch(function () {
+        $('submit').disabled = false
+        $('submit').textContent = 'Show the brochure'
+        $('error').textContent = 'Could not send your details. Please check your connection and try again.'
+      })
+  })
+})()
+</script>
+</body>
+</html>
